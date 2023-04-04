@@ -15,17 +15,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TheOneAPISDK = void 0;
 const axios_1 = __importDefault(require("axios"));
 class TheOneAPISDK {
-    constructor(apiKey) {
-        if (!apiKey) {
-            throw new Error("API key is required. Please provide a valid API key.");
-        }
-        this.axiosInstance = axios_1.default.create({
-            baseURL: "https://the-one-api.dev/v2",
-            headers: {
-                Authorization: `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-            },
+    constructor() { }
+    init(apiKey) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!apiKey) {
+                this.handleError(new Error("API key is required. Please provide a valid API key."));
+                return;
+            }
+            this.axiosInstance = axios_1.default.create({
+                baseURL: "https://the-one-api.dev/v2",
+                headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                    "Content-Type": "application/json",
+                },
+            });
+            // Test API key with a request
+            yield this.axiosInstance.get("/movie").catch(() => {
+                this.handleError(new Error("Invalid API key. Please provide a valid API key."));
+            });
         });
+    }
+    // Error handler function
+    handleError(error) {
+        console.log("-----------------------------------");
+        console.log("⚠️ An error occurred:");
+        console.log(error.message);
+        console.log("-----------------------------------");
     }
     request(endpoint) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -44,9 +59,16 @@ class TheOneAPISDK {
             return docs;
         });
     }
-    getMovie(movieId) {
+    getMovie(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.request(`/movie/${movieId}`);
+            try {
+                const response = yield this.axiosInstance.get(`/movie/${id}`);
+                return response.data.docs[0]; // Return only the movie object
+            }
+            catch (error) {
+                this.handleError(error);
+                return null;
+            }
         });
     }
     getMovieQuotes(movieId) {
