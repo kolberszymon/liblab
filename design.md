@@ -42,8 +42,8 @@ All methods in the SDK are asynchronous and return Promises. They use the `axios
 
 ### Error Handling
 
-The SDK includes error handling in the form of custom error classes. These classes extend the built-in `Error` class and provide more specific error information. Errors are thrown when there are issues with API requests or if the provided API key is invalid.
+Errors are thrown when there are issues with API requests or if the provided API key is invalid.
 
 ## Testing
 
-The SDK is tested using Jest, a popular JavaScript testing framework. Test cases cover the main functionality of the SDK and make use of the `nock` package to mock API responses.
+The SDK is tested using Jest, a popular JavaScript testing framework. Test cases cover the main functionality of the SDK.
