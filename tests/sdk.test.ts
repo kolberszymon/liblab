@@ -2,7 +2,7 @@ import { TheOneAPISDK } from "../src/index";
 import dotenv from "dotenv";
 dotenv.config();
 
-const apiKey = process.env.API_KEY;
+const apiKey = "your-api-key";
 
 if (!apiKey) {
   throw new Error("API key is required. Please provide a valid API key.");

@@ -18,17 +18,10 @@ The One API SDK is a simple TypeScript library that provides an interface to int
 
 ## Installation
 
-1. Clone the repository:
+1. You can use the SDK by installing it straight from npm:
 
 ```bash
-git clone https://github.com/yourusername/the-one-api-sdk.git
-```
-
-2. Navigate to the project directory and install the dependencies:
-
-```bash
-cd the-one-api-sdk
-yarn
+yarn add liblab-kolberszymon
 ```
 
 ## Usage
@@ -36,7 +29,7 @@ yarn
 1. Import the TheOneAPISDK class:
 
 ```typescript
-import { TheOneAPISDK } from "./the-one-api-sdk";
+import { TheOneAPISDK } from "liblab-kolberszymon";
 ```
 
 2. Initialize the SDK with your API key:
@@ -71,3 +64,5 @@ To run the tests, use the following command:
 ```bash
 yarn test
 ```
+
+Remeber to set up your API key in sdk.test.ts.
